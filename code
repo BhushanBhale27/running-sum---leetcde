@@ -1,0 +1,48 @@
+'use strict';
+
+process.stdin.setEncoding('utf-8');
+
+
+//========== User's Code Starts Here ==========
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var runningSum = function(nums) {
+    for(var i=0;i<nums.length-1;i++){
+        let temp=nums[i]+nums[i+1]
+        nums[i+1]=temp
+    }
+    return nums;
+};
+
+//========== User's Code Ends Here ==========
+
+
+//Dont change anything below. If changed click on reset.
+async function readInput() {
+        let inputString = '';
+        var output=[];
+        process.stdin.on('data', inputStdin => {
+            inputString += inputStdin;
+            const inputArr = inputString.split(/(?:\r\n|\r|\n)/g)
+            var nums=[];
+            for(var i=0;i<parseInt(inputArr[0]);i++)
+            {
+                nums.push(parseInt(inputArr[i+1]))
+            }
+            output = runningSum(nums)
+            var str="";
+            for(var i=0;i<output.length;i++)
+            {
+                str=str+output[i]+" ";
+            }  
+            console.log(str);
+            process.exit();
+            
+        })
+        
+
+}
+readInput();
